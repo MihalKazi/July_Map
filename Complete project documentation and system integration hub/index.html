@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangladesh Martyrs Memorial - Project Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #006A4E 0%, #F42A41 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 3rem;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            color: #006A4E;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header .flag {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .header p {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .websites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .website-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .website-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #006A4E, #F42A41);
+        }
+        
+        .website-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            border-color: #006A4E;
+        }
+        
+        .website-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .website-card h3 {
+            font-size: 1.5rem;
+            color: #006A4E;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .website-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .website-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #006A4E, #004d39);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 106, 78, 0.3);
+        }
+        
+        .website-link:hover {
+            background: linear-gradient(135deg, #004d39, #006A4E);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 106, 78, 0.4);
+        }
+        
+        .url-display {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #495057;
+            margin-top: 1rem;
+            word-break: break-all;
+            transition: all 0.3s ease;
+        }
+        
+        .url-display:hover {
+            background: #e9ecef;
+            border-color: #006A4E;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e9ecef;
+        }
+        
+        .footer p {
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        .footer .subtitle {
+            font-size: 1.1rem;
+            color: #006A4E;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Specific colors for each card */
+        .tech-card { border-top-color: #17a2b8; }
+        .tech-card .website-link { background: linear-gradient(135deg, #17a2b8, #138496); }
+        .tech-card .website-link:hover { background: linear-gradient(135deg, #138496, #17a2b8); }
+        
+        .stakeholder-card { border-top-color: #28a745; }
+        .stakeholder-card .website-link { background: linear-gradient(135deg, #28a745, #1e7e34); }
+        .stakeholder-card .website-link:hover { background: linear-gradient(135deg, #1e7e34, #28a745); }
+        
+        .planning-card { border-top-color: #ffc107; }
+        .planning-card .website-link { background: linear-gradient(135deg, #ffc107, #e0a800); color: #212529; }
+        .planning-card .website-link:hover { background: linear-gradient(135deg, #e0a800, #ffc107); }
+        
+        .timeline-card { border-top-color: #dc3545; }
+        .timeline-card .website-link { background: linear-gradient(135deg, #dc3545, #c82333); }
+        .timeline-card .website-link:hover { background: linear-gradient(135deg, #c82333, #dc3545); }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header p {
+                font-size: 1.1rem;
+            }
+            
+            .websites-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .website-card {
+                padding: 1.5rem;
+            }
+        }
+        
+        /* Animation for cards appearing */
+        .website-card {
+            animation: slideUp 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .website-card:nth-child(1) { animation-delay: 0.1s; }
+        .website-card:nth-child(2) { animation-delay: 0.2s; }
+        .website-card:nth-child(3) { animation-delay: 0.3s; }
+        .website-card:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <span class="flag">🇧🇩</span>
+            <h1>Bangladesh Martyrs Memorial Platform</h1>
+            <p>Complete project documentation and system integration hub. Access all project components through the links below.</p>
+        </div>
+        
+        <div class="websites-grid">
+            <!-- Technical Architecture -->
+            <div class="website-card tech-card">
+                <span class="icon">🏗️</span>
+                <h3>Technical Architecture</h3>
+                <p>Complete system architecture overview including infrastructure, security layers, and government integration protocols.</p>
+                <a href="https://techarchjuly.netlify.app/" target="_blank" class="website-link">
+                    Visit Architecture Site →
+                </a>
+                <div class="url-display">
+                    https://techarchjuly.netlify.app/
+                </div>
+            </div>
+            
+            <!-- Stakeholder Matrix -->
+            <div class="website-card stakeholder-card">
+                <span class="icon">👥</span>
+                <h3>Stakeholder Matrix</h3>
+                <p>Detailed responsibility assignments and roles for government, development team, families, community, and international partners.</p>
+                <a href="https://stakeholderjuly.netlify.app/" target="_blank" class="website-link">
+                    View Stakeholder Matrix →
+                </a>
+                <div class="url-display">
+                    https://stakeholderjuly.netlify.app/
+                </div>
+            </div>
+            
+            <!-- Risk Management -->
+            <div class="website-card planning-card">
+                <span class="icon">⚠️</span>
+                <h3>Risk Management & Planning</h3>
+                <p>Comprehensive risk mitigation strategies, contingency planning, and emergency response protocols for project security.</p>
+                <a href="https://planningjuly.netlify.app/" target="_blank" class="website-link">
+                    Access Risk Planning →
+                </a>
+                <div class="url-display">
+                    https://planningjuly.netlify.app/
+                </div>
+            </div>
+            
+            <!-- Project Timeline -->
+            <div class="website-card timeline-card">
+                <span class="icon">📅</span>
+                <h3>Project Timeline</h3>
+                <p>Complete 7-phase integration timeline with milestones, deliverables, and integration points for seamless project execution.</p>
+                <a href="https://timelinejuly.netlify.app/" target="_blank" class="website-link">
+                    View Project Timeline →
+                </a>
+                <div class="url-display">
+                    https://timelinejuly.netlify.app/
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="subtitle">Project Integration Hub</div>
+            <p>Each website contains detailed documentation for different aspects of the Bangladesh Martyrs Memorial Platform. Click any link above to access the specific documentation you need.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Add click-to-copy functionality for URLs
+        document.querySelectorAll('.url-display').forEach(urlBox => {
+            urlBox.style.cursor = 'pointer';
+            urlBox.title = 'Click to copy URL';
+            
+            urlBox.addEventListener('click', function() {
+                const url = this.textContent.trim();
+                navigator.clipboard.writeText(url).then(() => {
+                    // Visual feedback
+                    const originalBg = this.style.backgroundColor;
+                    const originalText = this.textContent;
+                    
+                    this.style.backgroundColor = '#d4edda';
+                    this.textContent = 'URL Copied! ✓';
+                    
+                    setTimeout(() => {
+                        this.style.backgroundColor = originalBg;
+                        this.textContent = originalText;
+                    }, 2000);
+                }).catch(() => {
+                    // Fallback for older browsers
+                    this.select();
+                    document.execCommand('copy');
+                });
+            });
+        });
+        
+        // Add smooth hover effects
+        document.querySelectorAll('.website-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.background = 'linear-gradient(135deg, #ffffff, #f8f9fa)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.background = 'white';
+            });
+        });
+    </script>
+</body>
+</html>
