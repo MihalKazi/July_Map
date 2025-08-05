@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stakeholder Responsibility Matrix</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #006A4E 0%, #F42A41 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #006A4E;
+            padding-bottom: 20px;
+        }
+        
+        .header h1 {
+            color: #006A4E;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .stakeholder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .stakeholder-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 5px solid #006A4E;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stakeholder-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,106,78,0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .stakeholder-card:hover::before {
+            left: 100%;
+        }
+        
+        .stakeholder-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .stakeholder-card.government {
+            border-left-color: #8B4513;
+            background: linear-gradient(135deg, #fff9f0, #f8f9fa);
+        }
+        
+        .stakeholder-card.development {
+            border-left-color: #2196F3;
+            background: linear-gradient(135deg, #f0f8ff, #f8f9fa);
+        }
+        
+        .stakeholder-card.families {
+            border-left-color: #F42A41;
+            background: linear-gradient(135deg, #fff0f0, #f8f9fa);
+        }
+        
+        .stakeholder-card.community {
+            border-left-color: #4CAF50;
+            background: linear-gradient(135deg, #f0fff0, #f8f9fa);
+        }
+        
+        .stakeholder-card.international {
+            border-left-color: #9C27B0;
+            background: linear-gradient(135deg, #f8f0ff, #f8f9fa);
+        }
+        
+        .stakeholder-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .stakeholder-icon {
+            font-size: 2.5em;
+            margin-right: 15px;
+        }
+        
+        .stakeholder-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .stakeholder-subtitle {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .responsibility-section {
+            margin: 20px 0;
+        }
+        
+        .responsibility-section h4 {
+            color: #006A4E;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+        
+        .responsibility-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .responsibility-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+            line-height: 1.4;
+        }
+        
+        .responsibility-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .authority-level {
+            background: linear-gradient(45deg, #006A4E, #00563d);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        .authority-level.high {
+            background: linear-gradient(45deg, #F42A41, #d01e36);
+        }
+        
+        .authority-level.medium {
+            background: linear-gradient(45deg, #FF9800, #F57C00);
+        }
+        
+        .authority-level.low {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+        }
+        
+        .interaction-matrix {
+            margin: 40px 0;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #ddd;
+        }
+        
+        .matrix-title {
+            text-align: center;
+            color: #006A4E;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+        }
+        
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .matrix-table th {
+            background: linear-gradient(135deg, #006A4E, #00563d);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .matrix-table td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s ease;
+        }
+        
+        .matrix-table tr:hover td {
+            background-color: #f0f8ff;
+        }
+        
+        .matrix-table .stakeholder-name {
+            font-weight: bold;
+            color: #006A4E;
+            text-align: left;
+            background: #f8f9fa;
+        }
+        
+        .responsibility-level {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .primary {
+            background: #F42A41;
+            color: white;
+        }
+        
+        .secondary {
+            background: #FF9800;
+            color: white;
+        }
+        
+        .supporting {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .informed {
+            background: #9E9E9E;
+            color: white;
+        }
+        
+        .communication-flow {
+            margin: 40px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .flow-node {
+            background: white;
+            border: 3px solid #006A4E;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: bold;
+            color: #006A4E;
+            transition: all 0.3s ease;
+        }
+        
+        .flow-node:hover {
+            background: #006A4E;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .flow-arrow {
+            font-size: 2em;
+            color: #F42A41;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .stakeholder-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .matrix-table {
+                font-size: 0.8em;
+            }
+            
+            .matrix-table th,
+            .matrix-table td {
+                padding: 8px;
+            }
+            
+            .communication-flow {
+                flex-direction: column;
+            }
+            
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>👥 Stakeholder Responsibility Matrix</h1>
+            <p>Clear roles and responsibilities for Bangladesh Martyrs Memorial Project</p>
+        </div>
+        
+        <div class="stakeholder-grid">
+            <div class="stakeholder-card government">
+                <div class="stakeholder-header">
+                    <div class="stakeholder-icon">🏛️</div>
+                    <div>
+                        <div class="stakeholder-title">Government Agencies</div>
+                        <div class="stakeholder-subtitle">Primary Authority & Oversight</div>
+                    </div>
+                </div>
+                <div class="authority-level high">HIGHEST AUTHORITY</div>
+                
+                <div class="responsibility-section">
+                    <h4>🎯 Primary Responsibilities</h4>
+                    <ul class="responsibility-list">
+                        <li>Final approval of all memorial content</li>
+                        <li>Security oversight and compliance monitoring</li>
+                        <li>Budget approval and funding allocation</li>
+                        <li>Policy guidelines and legal framework</li>
+                        <li>International representation coordination</li>
+                    </ul>
+                </div>
+                
+                <div class="responsibility-section">
+                    <h4>🏢 Key Ministries Involved</h4>
+                    <ul class="responsibility-list">
+                        <li>Ministry of ICT - Technical oversight</li>
+                        <li>Ministry of Education - Curriculum integration</li>
+                        <li>Ministry of Information - Content guidelines</li>
+                        <li>Ministry of Home Affairs - Security clearance</li>
+                    </ul>
+                </div>
+                
+                <div class="responsibility-section">
+                    <h4>⚡ Decision Authority</h4>
+                    <ul class="responsibility-list">
+                        <li>Content approval/rejection</li>
+                        <li>Security protocol changes</li>
+                        <li>Public access policy</li>
+                        <li>International data sharing</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="stakeholder-card development">
+                <div class="stakeholder-header">
+                    <div class="stakeholder-icon">💻</div>
+                    <div>
+                        <div class="stakeholder-title">Development Team</div>
+                        <div class="stakeholder-subtitle">Technical Implementation</div>
+                    </div>
+                </div>
+                <div class="authority-level medium">EXECUTION AUTHORITY</div>
+                
+                <div class="responsibility-section">
+                    <h4>🔧 Technical Responsibilities</h4>
+                    <ul class="responsibility-list">
+                        <li>Platform development and maintenance</li>
+                        <li>Security implementation and monitoring</li>
+                        <li>Database management and backup</li>
+                        <li>Performance optimization</li>
+                        <li>Bug fixes and technical support</li>
+                    </ul>
+                </div>
+                
+                <div class="responsibility-section">
+                    <h4>👨‍💻 Team Structure</h4>
+                    <ul class="responsibility-list">
+                        <li>Senior Full-Stack Developer - Architecture lead</li>
+                        <li>Junior Developer - Frontend/API development</li>
+                        <li>Project Manager - Timeline and coordination</li>
+                        <li>UI/UX Designer - User experience design</li>
+                    </ul>
+                </div>
+                
+                <div class="responsibility-section">
+                    <h4>📊 Reporting Requirements</h4>
+                    <ul class="responsibility-list">
+                        <li>Weekly progress reports to government</li>
+                        <li>Security incident immediate notification</li>
+                        <li>Monthly performance and usage statistics</li>
+                        <li>Quarterly technical audit reports</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="stakeholder-card families">
+                <div class="stakeholder-header">
+                    <div class="stakeholder-icon">👨‍👩‍👧‍👦</div>
+                    <div>
+                        <div class="stakeholder-title">Martyr Families</div>
+                        <div class="stakeholder-subtitle">Content Authority & Privacy Control</div>
+                    </div>
+                </div>
+                <div class="authority-level high">CONTENT AUTHORITY</div>
+                
+                <div class="responsibility-section">
+                    <h4>🛡️ Rights & Authority</h4>
+                    <ul class="responsibility-list">
+                        <li>Final approval for martyr profile information</li>
+                        <li>Control over photos and personal details</li>
+                        <li>Right to modify or remove content</li>
+                        <li>Approval of community submissions</li>
+                        <li>Privacy settings management</li>
+                    </ul>
+                </div>
+                
+                <div class="responsibility-section">
+                    <h4>📝 Participation Requirements</h4>
+                    <ul class="responsibility-list">
+                        <li>Provide accurate biographical information</li>
+                        <li>Verify submitted photos and documents</li>
+                        <li>Review community contributions</li>
+                        <li>Participate in consent verification process</li>
+                    </ul>
+                </div>
+                
+                <div class="responsibility-section">
+                    <h4>🤝 Support Provided</h4>
+                    <ul class="responsibility-list">
+                        <li>Dedicated family liaison support</li>
+                        <li>Technical assistance for platform use</li>
+                        <li>Regular updates on submissions</li>
+                        <li>Counseling and emotional support</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="stakeholder-card community">
+                <div class="stakeholder-header">
+                    <div class="stakeholder-icon">🌍</div>
+                    <div>
+                        <div class="stakeholder-title">Community & Public</div>
+                        <div class="stakeholder-subtitle">Content Contributors</div>
+                    </div>
+                </div>
+                <div class="authority-level low">CONTRIBUTION RIGHTS</div>
+                
+                <div class="responsibility-section">
+                    <h4>📤 Contribution Opportunities</h4>
+                    <ul class="responsibility-list">
+                        <li>Submit additional martyr information</li>
+                        <li>Share testimonials and memories</li>
+                        <li>Contribute photos and multimedia</li>
+                        <li>Report inaccurate information</li>
+                        <li>Suggest memorial events</li>
+                    </ul>
+                </div>
+                
+                <div class="responsibility-section">
+                    <h4>📋 Submission Guidelines</h4>
+                    <ul class="responsibility-list">
+                        <li>Verify accuracy of submitted information</li>
+                        <li>Respect family privacy and wishes</li>
+                        <li>Follow community guidelines</li>
+                        <li>Provide source verification when possible</li>
+                    </ul>
+                </div>
+                
+                <div class="responsibility-section">
+                    <h4>🎓 Educational Sector</h4>
+                    <ul class="responsibility-list">
+                        <li>Integration into curriculum planning</li>
+                        <li>Student research project coordination</li>
+                        <li>Teacher training and resource usage</li>
+                        <li>Academic citation and reference</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="stakeholder-card international">
+                <div class="stakeholder-header">
+                    <div class="stakeholder-icon">🌐</div>
+                    <div>
+                        <div class="stakeholder-title">International Partners</div>
+                        <div class="stakeholder-subtitle">Research & Recognition</div>
+                    </div>
+                </div>
+                <div class="authority-level low">RESEARCH ACCESS</div>
+                
+                <div class="responsibility-section">
+                    <h4>🔬 Research Opportunities</h4>
+                    <ul class="responsibility-list">
+                        <li>Academic research and documentation</li>
+                        <li>Human rights organization studies</li>
+                        <li>International media coverage</li>
+                        <li>Diplomatic recognition support</li>
+                        <li>Best practice sharing</li>
+                    </ul>
+                </div>
+                
+                <div class="responsibility-section">
+                    <h4>🤝 Partnership Benefits</h4>
+                    <ul class="responsibility-list">
+                        <li>Technical expertise sharing</li>
+                        <li>International platform promotion</li>
+                        <li>Funding and grant opportunities</li>
+                        <li>Global network integration</li>
+                    </ul>
+                </div>
+                
+                <div class="responsibility-section">
+                    <h4>📊 Access Limitations</h4>
+                    <ul class="responsibility-list">
+                        <li>Government approval required for data access</li>
+                        <li>Family consent needed for sensitive information</li>
+                        <li>Research purpose verification</li>
+                        <li>Citation and attribution requirements</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="interaction-matrix">
+            <h2 class="matrix-title">Responsibility Matrix: Who Does What</h2>
+            <table class="matrix-table">
+                <thead>
+                    <tr>
+                        <th>Activity</th>
+                        <th>Government</th>
+                        <th>Development Team</th>
+                        <th>Families</th>
+                        <th>Community</th>
+                        <th>International</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="stakeholder-name">Content Approval</td>
+                        <td><span class="responsibility-level primary">PRIMARY</span></td>
+                        <td><span class="responsibility-level supporting">SUPPORTING</span></td>
+                        <td><span class="responsibility-level primary">PRIMARY</span></td>
+                        <td><span class="responsibility-level informed">INFORMED</span></td>
+                        <td><span class="responsibility-level informed">INFORMED</span></td>
+                    </tr>
+                    <tr>
+                        <td class="stakeholder-name">Technical Development</td>
+                        <td><span class="responsibility-level secondary">OVERSIGHT</span></td>
+                        <td><span class="responsibility-level primary">PRIMARY</span></td>
+                        <td><span class="responsibility-level informed">INFORMED</span></td>
+                        <td><span class="responsibility-level informed">INFORMED</span></td>
+                        <td><span class="responsibility-level supporting">SUPPORTING</span></td>
+                    </tr>
+                    <tr>
+                        <td class="stakeholder-name">Security Management</td>
+                        <td><span class="responsibility-level primary">PRIMARY</span></td>
+                        <td><span class="responsibility-level secondary">SECONDARY</span></td>
+                        <td><span class="responsibility-level informed">INFORMED</span></td>
+                        <td><span class="responsibility-level informed">INFORMED</span></td>
+                        <td><span class="responsibility-level informed">INFORMED</span></td>
+                    </tr>
+                    <tr>
+                        <td class="stakeholder-name">Content Submission</td>
+                        <td><span class="responsibility-level secondary">APPROVAL</span></td>
+                        <td><span class="responsibility-level supporting">TECHNICAL</span></td>
+                        <td><span class="responsibility-level primary">AUTHORIZATION</span></td>
+                        <td><span class="responsibility-level primary">PRIMARY</span></td>
+                        <td><span class="responsibility-level secondary">SECONDARY</span></td>
+                    </tr>
+                    <tr>
+                        <td class="stakeholder-name">Educational Integration</td>
+                        <td><span class="responsibility-level primary">POLICY</span></td>
+                        <td><span class="responsibility-level supporting">TECHNICAL</span></td>
+                        <td><span class="responsibility-level informed">INFORMED</span></td>
+                        <td><span class="responsibility-level primary">PRIMARY</span></td>
+                        <td><span class="responsibility-level secondary">SUPPORTING</span></td>
+                    </tr>
+                    <tr>
+                        <td class="stakeholder-name">Budget Management</td>
+                        <td><span class="responsibility-level primary">PRIMARY</span></td>
+                        <td><span class="responsibility-level secondary">REPORTING</span></td>
+                        <td><span class="responsibility-level informed">INFORMED</span></td>
+                        <td><span class="responsibility-level informed">INFORMED</span></td>
+                        <td><span class="responsibility-level informed">INFORMED</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div style="background: #f0f8ff; border: 2px solid #2196F3; border-radius: 15px; padding: 25px; margin: 30px 0;">
+            <h3 style="color: #2196F3; text-align: center; margin-bottom: 20px;">🔄 Communication Flow</h3>
+            <div class="communication-flow">
+                <div class="flow-node">
+                    <div>🏛️</div>
+                    <div>Government</div>
+                    <div style="font-size: 0.7em;">Authority</div>
+                </div>
+                <div class="flow-arrow">↔</div>
+                <div class="flow-node">
+                    <div>💻</div>
+                    <div>Dev Team</div>
+                    <div style="font-size: 0.7em;">Implementation</div>
+                </div>
+                <div class="flow-arrow">↔</div>
+                <div class="flow-node">
+                    <div>👨‍👩‍👧‍👦</div>
+                    <div>Families</div>
+                    <div style="font-size: 0.7em;">Content Control</div>
+                </div>
+                <div class="flow-arrow">↔</div>
+                <div class="flow-node">
+                    <div>🌍</div>
+                    <div>Community</div>
+                    <div style="font-size: 0.7em;">Contribution</div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 20px; color: #666;">
+                <strong>Key Principle:</strong> All stakeholders have defined roles with clear communication channels. 
+                Government maintains final authority while respecting family rights and enabling community participation.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
