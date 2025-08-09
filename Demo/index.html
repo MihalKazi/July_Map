@@ -211,14 +211,19 @@
             padding: 0.8rem;
             border: 1px solid rgba(255,255,255,0.2);
             border-radius: 8px;
-            background: rgba(255,255,255,0.1);
-            color: white;
+            background: rgba(255,255,255,0.2);
+            color: #ffffff;
             font-family: inherit;
+        }
+
+        .form-group select option {
+            background-color: #2d2d2d;
+            color: #ffffff;
         }
 
         .form-group input::placeholder,
         .form-group textarea::placeholder {
-            color: #999;
+            color: #cccccc;
         }
 
         .btn-primary {
@@ -411,7 +416,7 @@
 
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number" id="total-martyrs">150+</div>
+                    <div class="stat-number" id="total-martyrs">2000+</div>
                     <div>Total Martyrs</div>
                 </div>
                 <div class="stat-card">
@@ -483,7 +488,7 @@
                     </div>
                 </div>
 
-                <div class="martyr-card" data-name="Farhan Faiyaز" data-location="Chittagong">
+                <div class="martyr-card" data-name="Farhan Faiyaz" data-location="Chittagong">
                     <div class="martyr-photo">FF</div>
                     <div class="martyr-name">Farhan Faiyaz</div>
                     <div class="martyr-details">
@@ -1205,7 +1210,7 @@
 
         // Update total martyrs count
         setTimeout(() => {
-            document.getElementById('total-martyrs').textContent = '200+';
+            document.getElementById('total-martyrs').textContent = '2000+';
         }, 5000);
     </script>
 </body>
