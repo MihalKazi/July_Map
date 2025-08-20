@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>July 2024 Bangladesh Martyrs Memorial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #dc3545;
+            --primary-green: #198754;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --gradient-primary: linear-gradient(135deg, #dc3545 0%, #198754 100%);
+            --gradient-bg: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--gradient-bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Enhanced Header with Animation */
+        .header {
+            background: linear-gradient(135deg, #dc3545 0%, #000 50%, #198754 100%);
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: sparkle 20s linear infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+            50% { transform: translateY(-10px) scale(1.1); opacity: 0.8; }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+            background: linear-gradient(45deg, #fff, #f8f9fa, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 3px 3px 6px rgba(0,0,0,0.8); }
+            100% { text-shadow: 3px 3px 15px rgba(220,53,69,0.5); }
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .date-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.15);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .date-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Enhanced Navigation */
+        .nav {
+            background: rgba(0,0,0,0.9);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 0 2rem;
+        }
+
+        .nav-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            min-width: 120px;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(220, 53, 69, 0.4);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(45deg, #198754, #dc3545);
+        }
+
+        /* Enhanced Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Section Transitions */
+        .section {
+            display: none;
+            animation: slideInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Enhanced Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Enhanced Map Section */
+        .map-container {
+            background: var(--card-bg);
+            border-radius: 25px;
+            padding: 2rem;
+            position: relative;
+            height: 800px;
+            border: 2px solid var(--border-color);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .map-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .map-control-btn {
+            background: rgba(0,0,0,0.8);
+            border: 1px solid var(--border-color);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .map-control-btn:hover {
+            background: var(--primary-red);
+            transform: scale(1.05);
+        }
+
+        .map-control-btn.active {
+            background: var(--gradient-primary);
+        }
+
+        /* Enhanced Bangladesh Map */
+        #bangladeshMap {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            filter: drop-shadow(0 0 20px rgba(25, 135, 84, 0.3));
+        }
+
+        .marker {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .marker:hover {
+            transform: scale(1.2);
+        }
+
+        .martyrdom-marker {
+            filter: drop-shadow(0 0 10px rgba(220,53,69,1));
+        }
+
+        .burial-marker {
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));
+        }
+
+        /* Enhanced Legend */
+        .map-legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.9);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-color);
+            max-width: 300px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .legend-marker {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 0.8rem;
+            border: 2px solid white;
+        }
+
+        .legend-marker.martyrdom {
+            background: var(--primary-red);
+        }
+
+        .legend-marker.burial {
+            background: white;
+        }
+
+        /* Enhanced Martyr Cards */
+        .martyrs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .martyr-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .martyr-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .martyr-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255,255,255,0.08);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .martyr-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            border: 4px solid rgba(255,255,255,0.2);
+        }
+
+        .martyr-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        .martyr-details {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .martyr-details p {
+            margin-bottom: 0.5rem;
+        }
+
+        .martyr-quote {
+            margin-top: 1rem;
+            font-style: italic;
+            padding: 1rem;
+            background: rgba(220,53,69,0.1);
+            border-left: 4px solid var(--primary-red);
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* Enhanced Search */
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            background: var(--card-bg);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 4px rgba(220,53,69,0.1);
+        }
+
+        .filter-select {
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            background: var(--card-bg);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+
+        /* Enhanced Memorial Wall */
+        .memorial-wall {
+            background: rgba(0,0,0,0.4);
+            padding: 3rem;
+            border-radius: 25px;
+            margin: 3rem 0;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-color);
+        }
+
+        .candle {
+            width: 50px;
+            height: 80px;
+            background: linear-gradient(to bottom, #ffd700, #ff8c00);
+            border-radius: 25px 25px 8px 8px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .candle::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 20px;
+            background: radial-gradient(circle, #ff6b35, #ff4500);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flicker 2s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1) rotate(-2deg); opacity: 0.8; }
+            50% { transform: translateX(-50%) scale(1.1) rotate(0deg); opacity: 1; }
+            100% { transform: translateX(-50%) scale(1.05) rotate(2deg); opacity: 0.9; }
+        }
+
+        /* Enhanced Forms */
+        .form-container {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--primary-red);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            background: rgba(255,255,255,0.05);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 4px rgba(220,53,69,0.1);
+            background: rgba(255,255,255,0.08);
+        }
+
+        /* Enhanced Buttons */
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            min-width: 160px;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(220, 53, 69, 0.4);
+        }
+
+        /* Enhanced Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin: 3rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 20px;
+            margin-left: 3rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -4.5rem;
+            top: 2rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: var(--primary-red);
+            border-radius: 50%;
+            border: 4px solid var(--primary-green);
+            box-shadow: 0 0 0 4px rgba(0,0,0,0.9);
+        }
+
+        /* Enhanced Location Details */
+        .location-details {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 2px solid var(--primary-red);
+            backdrop-filter: blur(10px);
+            animation: slideInUp 0.5s ease;
+        }
+
+        .location-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255,255,255,0.1);
+            transform: scale(1.1);
+        }
+
+        .location-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5rem; }
+            .nav-container { gap: 0.5rem; padding: 0 1rem; }
+            .nav-btn { padding: 0.8rem 1.2rem; font-size: 0.9rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .martyrs-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .container { padding: 1rem; }
+            .map-container { height: 600px; }
+            .timeline { padding-left: 2rem; }
+            .timeline-item { margin-left: 2rem; }
+            .timeline-item::before { left: -3.5rem; }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --card-bg: rgba(255, 255, 255, 0.1);
+                --border-color: rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-red);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Enhanced floating petals */
+        .floating-petals {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--primary-red);
+            border-radius: 0 100% 0 100%;
+            animation: fall 15s infinite linear;
+            opacity: 0.4;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-petals" id="petals"></div>
+
+    <header class="header">
+        <div class="header-content">
+            <h1>🕯️ July 2024 Bangladesh Martyrs Memorial</h1>
+            <p class="subtitle">Honoring the Heroes of Bangladesh Students Movement</p>
+            <div class="date-badge">
+                <span>📅</span>
+                <span>July - August 2024</span>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="showSection('home')">🏠 Home</button>
+            <button class="nav-btn" onclick="showSection('martyrs')">👥 Martyrs</button>
+            <button class="nav-btn" onclick="showSection('map')">🗺️ Memorial Map</button>
+            <button class="nav-btn" onclick="showSection('submit')">📝 Submit Memorial</button>
+            <button class="nav-btn" onclick="showSection('timeline')">📅 Timeline</button>
+            <button class="nav-btn" onclick="showSection('memorial')">🕯️ Memorial Wall</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section id="home" class="section active">
+            <div class="memorial-wall">
+                <div class="candle"></div>
+                <h2 style="color: var(--primary-red); margin-bottom: 1.5rem; font-size: 2.5rem;">In Memory of Our Heroes</h2>
+                <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    This memorial platform honors the brave souls who sacrificed their lives during the July-August 2024 student movement in Bangladesh. 
+                    Their courage and sacrifice will never be forgotten. They fought for justice, equality, and a better future for all.
+                </p>
+                <div style="background: rgba(220,53,69,0.1); padding: 1.5rem; border-radius: 15px; border-left: 4px solid var(--primary-red); margin-top: 2rem;">
+                    <h3 style="color: var(--primary-red); margin-bottom: 1rem;">📞 24/7 Support Hotline: 16000</h3>
+                    <p>Available daily for families seeking information about martyrs or needing support during this difficult time.</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-martyrs">200+</div>
+                    <div class="stat-label">Total Martyrs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Days of Struggle</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">64</div>
+                    <div class="stat-label">Districts Affected</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Forever Remembered</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="martyrs" class="section">
+            <h2 style="color: var(--primary-red); margin-bottom: 3rem; text-align: center; font-size: 2.5rem;">Our Martyrs</h2>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="🔍 Search by name, location, or date..." id="martyrSearch">
+                <select class="filter-select" id="locationFilter">
+                    <option value="">All Locations</option>
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="Chittagong">Chittagong</option>
+                    <option value="Sylhet">Sylhet</option>
+                    <option value="Rajshahi">Rajshahi</option>
+                    <option value="Khulna">Khulna</option>
+                    <option value="Rangpur">Rangpur</option>
+                    <option value="Mymensingh">Mymensingh</option>
+                    <option value="Barisal">Barisal</option>
+                </select>
+            </div>
+
+            <div class="martyrs-grid" id="martyrsGrid">
+                <div class="martyr-card" data-name="Abu Sayed" data-location="Rangpur">
+                    <div class="martyr-photo">AS</div>
+                    <div class="martyr-name">Abu Sayed</div>
+                    <div class="martyr-details">
+                        <p><strong>Age:</strong> 25</p>
+                        <p><strong>Martyrdom Location:</strong> Rangpur University Campus</p>
+                        <p><strong>Burial Location:</strong> Rangpur City Cemetery</p>
+                        <p><strong>Date:</strong> July 16, 2024</p>
+                        <p><strong>Occupation:</strong> Student</p>
+                        <div class="martyr-quote">
+                            "The first martyr of the movement - a brave soul who stood for justice and equality. His sacrifice ignited a nation's conscience."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="martyr-card" data-name="Mugdho" data-location="Dhaka">
+                    <div class="martyr-photo">MG</div>
+                    <div class="martyr-name">Mugdho</div>
+                    <div class="martyr-details">
+                        <p><strong>Age:</strong> 22</p>
+                        <p><strong>Martyrdom Location:</strong> Dhaka University Campus</p>
+                        <p><strong>Burial Location:</strong> Azimpur Graveyard</p>
+                        <p><strong>Date:</strong> July 18, 2024</p>
+                        <p><strong>Occupation:</strong> University Student</p>
+                        <div class="martyr-quote">
+                            "A passionate advocate for student rights who gave everything for the cause of justice and equality."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="martyr-card" data-name="Farhan Faiyaz" data-location="Chittagong">
+                    <div class="martyr-photo">FF</div>
+                    <div class="martyr-name">Farhan Faiyaz</div>
+                    <div class="martyr-details">
+                        <p><strong>Age:</strong> 23</p>
+                        <p><strong>Martyrdom Location:</strong> Chittagong University</p>
+                        <p><strong>Burial Location:</strong> Chittagong Central Cemetery</p>
+                        <p><strong>Date:</strong> July 19, 2024</p>
+                        <p><strong>Occupation:</strong> Student</p>
+                        <div class="martyr-quote">
+                            "His courage in the face of adversity will be remembered forever. A true hero of the people."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="martyr-card" data-name="Wasim Akram" data-location="Sylhet">
+                    <div class="martyr-photo">WA</div>
+                    <div class="martyr-name">Wasim Akram</div>
+                    <div class="martyr-details">
+                        <p><strong>Age:</strong> 24</p>
+                        <p><strong>Martyrdom Location:</strong> Sylhet City Center</p>
+                        <p><strong>Burial Location:</strong> Sylhet Shahjalal Mazar</p>
+                        <p><strong>Date:</strong> July 20, 2024</p>
+                        <p><strong>Occupation:</strong> Recent Graduate</p>
+                        <div class="martyr-quote">
+                            "A bright mind who sacrificed his future for the betterment of society. His legacy lives on."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="martyr-card" data-name="Asif Mahbub" data-location="Dhaka">
+                    <div class="martyr-photo">AM</div>
+                    <div class="martyr-name">Asif Mahbub</div>
+                    <div class="martyr-details">
+                        <p><strong>Age:</strong> 26</p>
+                        <p><strong>Martyrdom Location:</strong> Shahbagh Intersection</p>
+                        <p><strong>Burial Location:</strong> Banani Graveyard</p>
+                        <p><strong>Date:</strong> July 21, 2024</p>
+                        <p><strong>Occupation:</strong> Job Seeker</p>
+                        <div class="martyr-quote">
+                            "Fought for a fair system that would benefit all young people. His dream of equality continues."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="martyr-card" data-name="Riadh Ahmed" data-location="Rajshahi">
+                    <div class="martyr-photo">RA</div>
+                    <div class="martyr-name">Riadh Ahmed</div>
+                    <div class="martyr-details">
+                        <p><strong>Age:</strong> 21</p>
+                        <p><strong>Martyrdom Location:</strong> Rajshahi University</p>
+                        <p><strong>Burial Location:</strong> Rajshahi City Cemetery</p>
+                        <p><strong>Date:</strong> July 17, 2024</p>
+                        <p><strong>Occupation:</strong> University Student</p>
+                        <div class="martyr-quote">
+                            "A promising young leader who stood up for what was right. His voice echoes in our hearts."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="map" class="section">
+            <h2 style="color: var(--primary-red); margin-bottom: 2rem; text-align: center; font-size: 2.5rem;">Dual Memorial Map of Bangladesh</h2>
+            
+            <div style="background: var(--card-bg); padding: 1.5rem; border-radius: 15px; margin-bottom: 2rem; text-align: center; border: 1px solid var(--border-color);">
+                <p style="margin-bottom: 1rem;"><strong>Enhanced Geographic Memorial System:</strong></p>
+                <p>🔴 Red markers show <strong>Martyrdom Locations</strong> (where heroes fell) | ⚪ White markers show <strong>Burial Sites</strong> (where they rest in peace)</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">Click on any marker for detailed information about that location</p>
+            </div>
+
+            <div class="map-container">
+                <div class="map-controls">
+                    <button class="map-control-btn active" id="showBothBtn" onclick="toggleMapLayer('both')">Both Locations</button>
+                    <button class="map-control-btn" id="showMartyrdomBtn" onclick="toggleMapLayer('martyrdom')">Martyrdom Sites</button>
+                    <button class="map-control-btn" id="showBurialBtn" onclick="toggleMapLayer('burial')">Burial Sites</button>
+                    <button class="map-control-btn" onclick="resetMapView()">Reset View</button>
+                </div>
+
+                <svg viewBox="0 0 600 500" style="width: 100%; height: 100%; border-radius: 15px;" id="bangladeshMap">
+                    <!-- Enhanced Bangladesh country outline -->
+                    <path d="M 100 100
+                             C 120 90, 150 85, 180 82
+                             C 210 80, 240 78, 270 77
+                             C 300 76, 330 77, 360 80
+                             C 390 83, 420 88, 445 95
+                             C 465 102, 480 112, 490 125
+                             C 498 138, 502 152, 503 167
+                             C 504 182, 502 197, 498 211
+                             C 494 225, 488 238, 480 250
+                             C 472 262, 462 273, 450 282
+                             C 438 291, 424 298, 409 304
+                             C 394 310, 378 315, 362 319
+                             C 346 323, 329 326, 312 328
+                             C 295 330, 278 331, 261 331
+                             C 244 331, 227 330, 210 328
+                             C 193 326, 176 323, 160 319
+                             C 144 315, 128 310, 113 304
+                             C 98 298, 84 291, 72 282
+                             C 60 273, 50 262, 42 250
+                             C 34 238, 28 225, 24 211
+                             C 20 197, 18 182, 19 167
+                             C 20 152, 23 138, 28 125
+                             C 33 112, 40 100, 49 90
+                             C 58 80, 69 72, 82 67
+                             C 88 64, 94 62, 100 100 Z" 
+                          fill="rgba(25, 135, 84, 0.4)" 
+                          stroke="rgba(25, 135, 84, 1)" 
+                          stroke-width="3"
+                          filter="drop-shadow(0 0 15px rgba(25, 135, 84, 0.5))"/>
+                    
+                    <!-- Division boundaries with enhanced styling -->
+                    <g stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none" opacity="0.8">
+                        <!-- Rangpur Division -->
+                        <path d="M 100 100 L 180 95 L 230 105 L 220 155 L 170 165 L 120 155 L 100 130 Z"/>
+                        <!-- Rajshahi Division -->
+                        <path d="M 180 95 L 285 100 L 320 115 L 310 165 L 260 175 L 230 105 Z"/>
+                        <!-- Sylhet Division -->
+                        <path d="M 310 165 L 420 130 L 460 150 L 475 175 L 465 200 L 430 210 L 390 205 L 360 190 Z"/>
+                        <!-- Mymensingh Division -->
+                        <path d="M 220 155 L 260 175 L 310 165 L 360 190 L 330 220 L 280 225 L 230 215 L 190 195 Z"/>
+                        <!-- Dhaka Division -->
+                        <path d="M 190 195 L 230 215 L 280 225 L 330 220 L 390 205 L 410 235 L 380 265 L 330 275 L 280 270 L 230 260 L 180 250 L 150 225 Z"/>
+                        <!-- Chittagong Division -->
+                        <path d="M 390 205 L 465 200 L 500 220 L 520 250 L 515 285 L 500 315 L 470 340 L 430 350 L 390 345 L 360 330 L 340 310 L 330 290 L 340 270 L 360 250 L 380 230 Z"/>
+                        <!-- Khulna Division -->
+                        <path d="M 100 130 L 120 155 L 170 165 L 190 195 L 150 225 L 110 250 L 70 275 L 40 295 L 20 310 L 10 320 L 15 300 L 25 280 L 40 260 L 60 240 L 75 220 L 85 200 L 90 180 L 85 160 Z"/>
+                        <!-- Barisal Division -->
+                        <path d="M 150 225 L 180 250 L 230 260 L 280 270 L 330 275 L 340 290 L 330 310 L 310 325 L 280 335 L 250 340 L 220 342 L 190 340 L 160 335 L 130 325 L 105 310 L 90 290 L 85 270 L 90 250 L 105 235 Z"/>
+                    </g>
+                    
+                    <!-- Enhanced rivers with animation -->
+                    <g stroke="rgba(135, 206, 250, 0.8)" stroke-width="3" fill="none" opacity="0.9">
+                        <path d="M 100 210 Q 180 215 260 210 Q 340 205 400 215" stroke-dasharray="4,3" opacity="0.8">
+                            <animate attributeName="stroke-dashoffset" values="0;-10" dur="2s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M 260 210 Q 300 240 330 270 Q 360 300 390 330" stroke-dasharray="4,3" opacity="0.8">
+                            <animate attributeName="stroke-dashoffset" values="0;-10" dur="2.5s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M 200 150 Q 210 180 220 210 Q 230 240 240 270" stroke-dasharray="3,2" opacity="0.7">
+                            <animate attributeName="stroke-dashoffset" values="0;-8" dur="3s" repeatCount="indefinite"/>
+                        </path>
+                    </g>
+                    
+                    <!-- Division labels with better positioning -->
+                    <g fill="white" font-family="Inter, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">
+                        <text x="150" y="130" style="text-shadow: 2px 2px 6px rgba(0,0,0,0.9); filter: drop-shadow(0 0 3px rgba(255,255,255,0.5));">Rangpur</text>
+                        <text x="255" y="135" style="text-shadow: 2px 2px 6px rgba(0,0,0,0.9); filter: drop-shadow(0 0 3px rgba(255,255,255,0.5));">Rajshahi</text>
+                        <text x="440" y="170" style="text-shadow: 2px 2px 6px rgba(0,0,0,0.9); filter: drop-shadow(0 0 3px rgba(255,255,255,0.5));">Sylhet</text>
+                        <text x="295" y="190" style="text-shadow: 2px 2px 6px rgba(0,0,0,0.9); filter: drop-shadow(0 0 3px rgba(255,255,255,0.5));">Mymensingh</text>
+                        <text x="265" y="240" style="text-shadow: 2px 2px 6px rgba(0,0,0,0.9); filter: drop-shadow(0 0 3px rgba(255,255,255,0.5)); font-size: 16px;">DHAKA</text>
+                        <text x="430" y="275" style="text-shadow: 2px 2px 6px rgba(0,0,0,0.9); filter: drop-shadow(0 0 3px rgba(255,255,255,0.5));">Chittagong</text>
+                        <text x="105" y="230" style="text-shadow: 2px 2px 6px rgba(0,0,0,0.9); filter: drop-shadow(0 0 3px rgba(255,255,255,0.5));">Khulna</text>
+                        <text x="215" y="305" style="text-shadow: 2px 2px 6px rgba(0,0,0,0.9); filter: drop-shadow(0 0 3px rgba(255,255,255,0.5));">Barisal</text>
+                    </g>
+                    
+                    <!-- Martyrdom location markers (Red) -->
+                    <g id="martyrdomMarkers">
+                        <circle cx="265" cy="240" r="10" fill="#dc3545" stroke="white" stroke-width="3" class="marker martyrdom-marker" data-location="Dhaka" data-type="martyrdom" data-count="45" style="cursor: pointer;">
+                            <animate attributeName="r" values="10;13;10" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="430" cy="275" r="8" fill="#dc3545" stroke="white" stroke-width="2" class="marker martyrdom-marker" data-location="Chittagong" data-type="martyrdom" data-count="28" style="cursor: pointer;">
+                            <animate attributeName="r" values="8;11;8" dur="2.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="150" cy="130" r="7" fill="#dc3545" stroke="white" stroke-width="2" class="marker martyrdom-marker" data-location="Rangpur" data-type="martyrdom" data-count="18" style="cursor: pointer;">
+                            <animate attributeName="r" values="7;10;7" dur="1.8s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="440" cy="170" r="6" fill="#dc3545" stroke="white" stroke-width="2" class="marker martyrdom-marker" data-location="Sylhet" data-type="martyrdom" data-count="15" style="cursor: pointer;">
+                            <animate attributeName="r" values="6;9;6" dur="2.2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="255" cy="135" r="5.5" fill="#dc3545" stroke="white" stroke-width="2" class="marker martyrdom-marker" data-location="Rajshahi" data-type="martyrdom" data-count="12" style="cursor: pointer;">
+                            <animate attributeName="r" values="5.5;8.5;5.5" dur="1.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="105" cy="230" r="5" fill="#dc3545" stroke="white" stroke-width="2" class="marker martyrdom-marker" data-location="Khulna" data-type="martyrdom" data-count="10" style="cursor: pointer;">
+                            <animate attributeName="r" values="5;8;5" dur="1.7s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="295" cy="190" r="4.5" fill="#dc3545" stroke="white" stroke-width="2" class="marker martyrdom-marker" data-location="Mymensingh" data-type="martyrdom" data-count="8" style="cursor: pointer;">
+                            <animate attributeName="r" values="4.5;7.5;4.5" dur="2.1s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="215" cy="305" r="4" fill="#dc3545" stroke="white" stroke-width="2" class="marker martyrdom-marker" data-location="Barisal" data-type="martyrdom" data-count="6" style="cursor: pointer;">
+                            <animate attributeName="r" values="4;7;4" dur="1.9s" repeatCount="indefinite"/>
+                        </circle>
+                    </g>
+                    
+                    <!-- Burial site markers (White/Peaceful) -->
+                    <g id="burialMarkers">
+                        <circle cx="280" cy="255" r="8" fill="white" stroke="#198754" stroke-width="3" class="marker burial-marker" data-location="Dhaka" data-type="burial" data-count="45" style="cursor: pointer; opacity: 0.9;">
+                            <animate attributeName="r" values="8;11;8" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="445" cy="290" r="6.5" fill="white" stroke="#198754" stroke-width="2" class="marker burial-marker" data-location="Chittagong" data-type="burial" data-count="28" style="cursor: pointer; opacity: 0.9;">
+                            <animate attributeName="r" values="6.5;9.5;6.5" dur="3.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="165" cy="145" r="5.5" fill="white" stroke="#198754" stroke-width="2" class="marker burial-marker" data-location="Rangpur" data-type="burial" data-count="18" style="cursor: pointer; opacity: 0.9;">
+                            <animate attributeName="r" values="5.5;8.5;5.5" dur="2.8s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="455" cy="185" r="5" fill="white" stroke="#198754" stroke-width="2" class="marker burial-marker" data-location="Sylhet" data-type="burial" data-count="15" style="cursor: pointer; opacity: 0.9;">
+                            <animate attributeName="r" values="5;8;5" dur="3.2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="270" cy="150" r="4.5" fill="white" stroke="#198754" stroke-width="2" class="marker burial-marker" data-location="Rajshahi" data-type="burial" data-count="12" style="cursor: pointer; opacity: 0.9;">
+                            <animate attributeName="r" values="4.5;7.5;4.5" dur="2.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="120" cy="245" r="4" fill="white" stroke="#198754" stroke-width="2" class="marker burial-marker" data-location="Khulna" data-type="burial" data-count="10" style="cursor: pointer; opacity: 0.9;">
+                            <animate attributeName="r" values="4;7;4" dur="2.7s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="310" cy="205" r="3.5" fill="white" stroke="#198754" stroke-width="2" class="marker burial-marker" data-location="Mymensingh" data-type="burial" data-count="8" style="cursor: pointer; opacity: 0.9;">
+                            <animate attributeName="r" values="3.5;6.5;3.5" dur="3.1s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="230" cy="320" r="3" fill="white" stroke="#198754" stroke-width="2" class="marker burial-marker" data-location="Barisal" data-type="burial" data-count="6" style="cursor: pointer; opacity: 0.9;">
+                            <animate attributeName="r" values="3;6;3" dur="2.9s" repeatCount="indefinite"/>
+                        </circle>
+                    </g>
+                    
+                    <!-- Bay of Bengal label -->
+                    <text x="350" y="380" fill="rgba(135, 206, 250, 0.9)" font-family="Inter, sans-serif" font-size="16" font-style="italic" text-anchor="middle" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.6);">Bay of Bengal</text>
+                    
+                    <!-- Enhanced compass rose -->
+                    <g transform="translate(500, 120)" opacity="0.8">
+                        <circle cx="0" cy="0" r="30" fill="rgba(0,0,0,0.2)" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+                        <text x="0" y="-18" fill="white" font-size="14" text-anchor="middle" font-weight="bold">N</text>
+                        <text x="18" y="5" fill="white" font-size="12" text-anchor="middle">E</text>
+                        <text x="0" y="20" fill="white" font-size="12" text-anchor="middle">S</text>
+                        <text x="-18" y="5" fill="white" font-size="12" text-anchor="middle">W</text>
+                        <line x1="0" y1="-25" x2="0" y2="-15" stroke="white" stroke-width="3"/>
+                    </g>
+                </svg>
+                
+                <!-- Enhanced legend -->
+                <div class="map-legend">
+                    <h4 style="color: var(--primary-red); margin-bottom: 1rem; font-size: 1.1rem;">📍 Memorial Legend</h4>
+                    <div class="legend-item">
+                        <div class="legend-marker martyrdom"></div>
+                        <span>Martyrdom Locations (Where Heroes Fell)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-marker burial"></div>
+                        <span>Burial Sites (Where They Rest)</span>
+                    </div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                        <p>• Marker size indicates number of martyrs</p>
+                        <p>• Use controls to toggle between location types</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Location details panel -->
+            <div id="locationDetails" class="location-details" style="display: none;">
+                <div class="location-header">
+                    <h3 id="locationName" style="color: var(--primary-red); margin: 0; font-size: 1.8rem;"></h3>
+                    <button class="close-btn" onclick="closeLocationDetails()">×</button>
+                </div>
+                <div id="locationInfo" class="location-content">
+                    <!-- Location details will be populated here -->
+                </div>
+            </div>
+            
+            <!-- Enhanced statistics by location -->
+            <div class="stats-grid" style="margin-top: 3rem;">
+                <div class="stat-card">
+                    <div class="stat-number">45</div>
+                    <div class="stat-label">Dhaka Division</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">28</div>
+                    <div class="stat-label">Chittagong Division</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">18</div>
+                    <div class="stat-label">Rangpur Division</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Sylhet Division</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="submit" class="section">
+            <h2 style="color: var(--primary-red); margin-bottom: 3rem; text-align: center; font-size: 2.5rem;">Submit Memorial Information</h2>
+            
+            <div class="form-container">
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <p style="font-size: 1.2rem; margin-bottom: 1rem;">Help us honor our martyrs by providing information about those who sacrificed their lives.</p>
+                    <p style="color: var(--text-secondary);">All information will be carefully verified before publication. Your contribution helps preserve their memory for future generations.</p>
+                </div>
+
+                <form id="memorialForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="martyrName">Full Name *</label>
+                            <input type="text" id="martyrName" name="martyrName" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Age *</label>
+                            <input type="number" id="age" name="age" min="1" max="100" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="martyrdomLocation">Martyrdom Location *</label>
+                            <input type="text" id="martyrdomLocation" name="martyrdomLocation" class="form-input" placeholder="Where the sacrifice occurred" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="burialLocation">Burial Location</label>
+                            <input type="text" id="burialLocation" name="burialLocation" class="form-input" placeholder="Where they rest (if different from martyrdom site)">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="division">Division *</label>
+                            <select id="division" name="division" class="form-input" required>
+                                <option value="">Select Division</option>
+                                <option value="Dhaka">Dhaka</option>
+                                <option value="Chittagong">Chittagong</option>
+                                <option value="Sylhet">Sylhet</option>
+                                <option value="Rajshahi">Rajshahi</option>
+                                <option value="Khulna">Khulna</option>
+                                <option value="Rangpur">Rangpur</option>
+                                <option value="Mymensingh">Mymensingh</option>
+                                <option value="Barisal">Barisal</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dateOfIncident">Date of Incident *</label>
+                            <input type="date" id="dateOfIncident" name="dateOfIncident" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="occupation">Occupation</label>
+                            <input type="text" id="occupation" name="occupation" class="form-input" placeholder="e.g., Student, Job Seeker, etc.">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="institution">Institution/Organization</label>
+                            <input type="text" id="institution" name="institution" class="form-input" placeholder="School, University, Company, etc.">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="biography">Biography/Memorial Message *</label>
+                        <textarea id="biography" name="biography" rows="5" class="form-input" placeholder="Share memories, achievements, or a message about this person..." required></textarea>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="submitterName">Your Name *</label>
+                            <input type="text" id="submitterName" name="submitterName" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="relationship">Your Relationship to the Martyr *</label>
+                            <select id="relationship" name="relationship" class="form-input" required>
+                                <option value="">Select Relationship</option>
+                                <option value="Family Member">Family Member</option>
+                                <option value="Friend">Friend</option>
+                                <option value="Classmate">Classmate</option>
+                                <option value="Colleague">Colleague</option>
+                                <option value="Community Member">Community Member</option>
+                                <option value="Witness">Witness</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                     <div class="form-group">
+                            <label for="submitterEmail">Your Email *</label>
+                            <input type="email" id="submitterEmail" name="submitterEmail" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="submitterPhone">Your Phone Number</label>
+                            <input type="tel" id="submitterPhone" name="submitterPhone" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="additionalInfo">Additional Information</label>
+                        <textarea id="additionalInfo" name="additionalInfo" rows="3" class="form-input" placeholder="Any additional details, verification sources, or special circumstances..."></textarea>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <button type="submit" class="btn-primary">
+                            <span id="submitBtnText">Submit Memorial Information</span>
+                            <div class="loading" id="submitLoading" style="display: none;"></div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div style="background: rgba(220,53,69,0.1); padding: 2rem; border-radius: 15px; margin-top: 2rem; border: 1px solid var(--primary-red);">
+                <h3 style="color: var(--primary-red); margin-bottom: 1rem;">📋 Important Guidelines</h3>
+                <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: 1.5rem;">
+                    <li>All information will be carefully verified before publication</li>
+                    <li>Please provide accurate location details for both martyrdom and burial sites</li>
+                    <li>Photos will be handled with utmost respect and dignity</li>
+                    <li>Family consent is required for all personal information</li>
+                    <li>Submissions are reviewed within 72 hours</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="timeline" class="section">
+            <h2 style="color: var(--primary-red); margin-bottom: 3rem; text-align: center; font-size: 2.5rem;">Movement Timeline</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3 style="color: var(--primary-red); margin-bottom: 1rem;">July 1-15, 2024</h3>
+                    <h4 style="margin-bottom: 0.5rem;">Initial Protests Begin</h4>
+                    <p>Students across Bangladesh began peaceful protests demanding quota reform in government jobs. The movement gained momentum with support from various universities and educational institutions nationwide.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3 style="color: var(--primary-red); margin-bottom: 1rem;">July 16, 2024</h3>
+                    <h4 style="margin-bottom: 0.5rem;">First Martyrdom - Abu Sayed</h4>
+                    <p>Abu Sayed from Rangpur University became the first martyr of the movement. His sacrifice marked a turning point and galvanized the entire nation. His final moments, captured on video, became a symbol of peaceful resistance.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3 style="color: var(--primary-red); margin-bottom: 1rem;">July 17-20, 2024</h3>
+                    <h4 style="margin-bottom: 0.5rem;">Nationwide Escalation</h4>
+                    <p>The movement spread rapidly across all divisions of Bangladesh. Students from Dhaka, Chittagong, Sylhet, Rajshahi, and other major cities joined in solidarity. The protests remained largely peaceful despite increasing tensions.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3 style="color: var(--primary-red); margin-bottom: 1rem;">July 21-25, 2024</h3>
+                    <h4 style="margin-bottom: 0.5rem;">Critical Days</h4>
+                    <p>These days witnessed the highest number of casualties as the movement reached its peak. Heroes like Mugdho, Farhan Faiyaz, and Asif Mahbub made the ultimate sacrifice for justice and equality.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3 style="color: var(--primary-red); margin-bottom: 1rem;">August 1-5, 2024</h3>
+                    <h4 style="margin-bottom: 0.5rem;">Final Push</h4>
+                    <p>The final phase of the movement saw continued resistance and sacrifice. The collective sacrifice of over 200 martyrs finally led to significant policy discussions and reforms.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3 style="color: var(--primary-green); margin-bottom: 1rem;">August 5, 2024</h3>
+                    <h4 style="margin-bottom: 0.5rem;">Government Change</h4>
+                    <p>The movement's demands were finally acknowledged, leading to significant governmental changes. The sacrifice of our martyrs was not in vain, as their blood paved the way for a more just and equitable system.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="memorial" class="section">
+            <h2 style="color: var(--primary-red); margin-bottom: 3rem; text-align: center; font-size: 2.5rem;">Digital Memorial Wall</h2>
+            
+            <div class="memorial-wall">
+                <div class="candle"></div>
+                <h3 style="color: var(--primary-red); margin-bottom: 2rem; font-size: 2rem;">Light a Candle for Our Heroes</h3>
+                <p style="font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.8;">Join thousands of others in paying tribute to the martyrs of July 2024. Each candle lit represents a prayer, a memory, and a promise that their sacrifice will never be forgotten.</p>
+                
+                <div style="display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; flex-wrap: wrap;">
+                    <button class="btn-primary" onclick="lightCandle()">🕯️ Light a Candle</button>
+                    <button class="btn-primary" onclick="showTributes()">💝 View Tributes</button>
+                </div>
+
+                <div class="stats-grid" style="margin-top: 3rem;">
+                    <div class="stat-card">
+                        <div class="stat-number" id="candlesLit">15,847</div>
+                        <div class="stat-label">Candles Lit</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="tributesShared">3,256</div>
+                        <div class="stat-label">Tributes Shared</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="visitorsToday">892</div>
+                        <div class="stat-label">Visitors Today</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Memories Preserved</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tribute Form -->
+            <div class="form-container" id="tributeForm" style="display: none;">
+                <h3 style="color: var(--primary-red); margin-bottom: 2rem; text-align: center;">Share Your Tribute</h3>
+                <form onsubmit="submitTribute(event)">
+                    <div class="form-group">
+                        <label for="tributeName">Your Name</label>
+                        <input type="text" id="tributeName" class="form-input" placeholder="Enter your name (optional)">
+                    </div>
+                    <div class="form-group">
+                        <label for="tributeMessage">Your Message *</label>
+                        <textarea id="tributeMessage" rows="4" class="form-input" placeholder="Share your tribute, prayer, or memory..." required></textarea>
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn-primary">Submit Tribute</button>
+                        <button type="button" class="btn-primary" onclick="hideTributeForm()" style="background: rgba(255,255,255,0.1); margin-left: 1rem;">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Tributes Display -->
+            <div id="tributesDisplay" style="display: none;">
+                <h3 style="color: var(--primary-red); margin: 3rem 0 2rem; text-align: center;">Recent Tributes</h3>
+                <div id="tributesList" class="martyrs-grid">
+                    <!-- Tributes will be populated here -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Sample tribute data
+        const tributes = [
+            {
+                name: "Fatima Rahman",
+                message: "Your sacrifice will never be forgotten. You fought for justice and equality. May Allah grant you Jannah.",
+                date: "2024-08-15"
+            },
+            {
+                name: "Anonymous",
+                message: "Heroes never die. Your blood has watered the seeds of freedom. Thank you for your courage.",
+                date: "2024-08-14"
+            },
+            {
+                name: "Dr. Ahmed Hassan",
+                message: "As a father, I salute these brave souls who gave everything for a better Bangladesh. Their families should be proud.",
+                date: "2024-08-13"
+            }
+        ];
+
+        // Location data for enhanced map functionality
+        const locationData = {
+            "Dhaka": {
+                martyrdom: { count: 45, details: "Major protests occurred at Shahbagh, Dhaka University, and surrounding areas" },
+                burial: { count: 45, details: "Most martyrs were laid to rest at Azimpur Graveyard and Banani Cemetery" }
+            },
+            "Chittagong": {
+                martyrdom: { count: 28, details: "Chittagong University and port city areas saw significant protests" },
+                burial: { count: 28, details: "Chittagong Central Cemetery and local community graveyards" }
+            },
+            "Rangpur": {
+                martyrdom: { count: 18, details: "Rangpur University was the site of the first martyrdom - Abu Sayed" },
+                burial: { count: 18, details: "Rangpur City Cemetery and family burial grounds" }
+            },
+            "Sylhet": {
+                martyrdom: { count: 15, details: "Sylhet city center and university areas witnessed protests" },
+                burial: { count: 15, details: "Shahjalal Mazar area and local cemeteries" }
+            },
+            "Rajshahi": {
+                martyrdom: { count: 12, details: "Rajshahi University campus and city center protests" },
+                burial: { count: 12, details: "Rajshahi City Cemetery and local burial sites" }
+            },
+            "Khulna": {
+                martyrdom: { count: 10, details: "Khulna city protests and local university areas" },
+                burial: { count: 10, details: "Local community cemeteries and family plots" }
+            },
+            "Mymensingh": {
+                martyrdom: { count: 8, details: "Local protests in city center and educational institutions" },
+                burial: { count: 8, details: "Community cemeteries and family burial grounds" }
+            },
+            "Barisal": {
+                martyrdom: { count: 6, details: "Barisal city and surrounding areas" },
+                burial: { count: 6, details: "Local cemeteries and community burial sites" }
+            }
+        };
+
+        // Navigation functionality
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Update navigation buttons
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Map layer functionality
+        let currentMapLayer = 'both';
+
+        function toggleMapLayer(layer) {
+            currentMapLayer = layer;
+            
+            const martyrdomMarkers = document.getElementById('martyrdomMarkers');
+            const burialMarkers = document.getElementById('burialMarkers');
+            const controls = document.querySelectorAll('.map-control-btn');
+
+            // Remove active class from all controls
+            controls.forEach(ctrl => ctrl.classList.remove('active'));
+
+            switch(layer) {
+                case 'martyrdom':
+                    martyrdomMarkers.style.display = 'block';
+                    burialMarkers.style.display = 'none';
+                    document.getElementById('showMartyrdomBtn').classList.add('active');
+                    break;
+                case 'burial':
+                    martyrdomMarkers.style.display = 'none';
+                    burialMarkers.style.display = 'block';
+                    document.getElementById('showBurialBtn').classList.add('active');
+                    break;
+                case 'both':
+                default:
+                    martyrdomMarkers.style.display = 'block';
+                    burialMarkers.style.display = 'block';
+                    document.getElementById('showBothBtn').classList.add('active');
+                    break;
+            }
+        }
+
+        function resetMapView() {
+            // Reset to show both layers
+            toggleMapLayer('both');
+            // Close any open location details
+            closeLocationDetails();
+        }
+
+        // Enhanced map marker click functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const markers = document.querySelectorAll('.marker');
+            markers.forEach(marker => {
+                marker.addEventListener('click', function() {
+                    const location = this.getAttribute('data-location');
+                    const type = this.getAttribute('data-type');
+                    const count = this.getAttribute('data-count');
+                    showLocationDetails(location, type, count);
+                });
+            });
+        });
+
+        function showLocationDetails(location, type, count) {
+            const detailsPanel = document.getElementById('locationDetails');
+            const locationName = document.getElementById('locationName');
+            const locationInfo = document.getElementById('locationInfo');
+
+            const data = locationData[location];
+            if (!data) return;
+
+            locationName.textContent = `${location} Division`;
+
+            const typeTitle = type === 'martyrdom' ? 'Martyrdom Locations' : 'Burial Sites';
+            const typeData = type === 'martyrdom' ? data.martyrdom : data.burial;
+
+            locationInfo.innerHTML = `
+                <div>
+                    <h4 style="color: var(--primary-red); margin-bottom: 1rem;">${typeTitle}</h4>
+                    <div style="background: var(--card-bg); padding: 1.5rem; border-radius: 15px; margin-bottom: 1rem;">
+                        <p style="font-size: 1.2rem; margin-bottom: 0.5rem;"><strong>Total: ${count} martyrs</strong></p>
+                        <p style="color: var(--text-secondary); line-height: 1.6;">${typeData.details}</p>
+                    </div>
+                    
+                    ${type === 'martyrdom' ? 
+                        `<div style="background: rgba(220,53,69,0.1); padding: 1rem; border-radius: 10px; border-left: 4px solid var(--primary-red);">
+                            <h5 style="color: var(--primary-red); margin-bottom: 0.5rem;">Martyrdom Sites Information</h5>
+                            <p style="font-size: 0.9rem;">These locations mark where our heroes made the ultimate sacrifice for justice and equality.</p>
+                        </div>` :
+                        `<div style="background: rgba(25,135,84,0.1); padding: 1rem; border-radius: 10px; border-left: 4px solid var(--primary-green);">
+                            <h5 style="color: var(--primary-green); margin-bottom: 0.5rem;">Burial Sites Information</h5>
+                            <p style="font-size: 0.9rem;">These peaceful locations are where our martyrs rest in eternal peace. Families and supporters can visit to pay their respects.</p>
+                        </div>`
+                    }
+                </div>
+            `;
+
+            detailsPanel.style.display = 'block';
+            detailsPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function closeLocationDetails() {
+            document.getElementById('locationDetails').style.display = 'none';
+        }
+
+        // Search and filter functionality
+        function initializeSearch() {
+            const searchInput = document.getElementById('martyrSearch');
+            const locationFilter = document.getElementById('locationFilter');
+
+            if (searchInput) {
+                searchInput.addEventListener('input', filterMartyrs);
+            }
+            if (locationFilter) {
+                locationFilter.addEventListener('change', filterMartyrs);
+            }
+        }
+
+        function filterMartyrs() {
+            const searchTerm = document.getElementById('martyrSearch')?.value.toLowerCase() || '';
+            const locationFilter = document.getElementById('locationFilter')?.value || '';
+            const martyrCards = document.querySelectorAll('.martyr-card');
+
+            martyrCards.forEach(card => {
+                const name = card.getAttribute('data-name')?.toLowerCase() || '';
+                const location = card.getAttribute('data-location') || '';
+                const cardText = card.textContent.toLowerCase();
+
+                const matchesSearch = searchTerm === '' || 
+                    name.includes(searchTerm) || 
+                    cardText.includes(searchTerm);
+                
+                const matchesLocation = locationFilter === '' || location === locationFilter;
+
+                if (matchesSearch && matchesLocation) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Memorial form submission
+        document.getElementById('memorialForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtnText');
+            const loading = document.getElementById('submitLoading');
+            
+            // Show loading state
+            submitBtn.style.display = 'none';
+            loading.style.display = 'inline-block';
+            
+            // Simulate form submission
+            setTimeout(() => {
+                alert('Thank you for your submission. The memorial information will be reviewed and added within 72 hours.');
+                this.reset();
+                
+                // Reset button state
+                submitBtn.style.display = 'inline';
+                loading.style.display = 'none';
+            }, 2000);
+        });
+
+        // Memorial wall functionality
+        function lightCandle() {
+            const candleCount = document.getElementById('candlesLit');
+            const currentCount = parseInt(candleCount.textContent.replace(',', ''));
+            candleCount.textContent = (currentCount + 1).toLocaleString();
+            
+            // Show visual feedback
+            const candle = document.querySelector('.candle');
+            candle.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                candle.style.transform = 'scale(1)';
+            }, 300);
+            
+            // Show tribute form
+            document.getElementById('tributeForm').style.display = 'block';
+            document.getElementById('tributeForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showTributes() {
+            const tributesDisplay = document.getElementById('tributesDisplay');
+            const tributesList = document.getElementById('tributesList');
+            
+            // Populate tributes
+            tributesList.innerHTML = tributes.map(tribute => `
+                <div class="martyr-card">
+                    <div class="martyr-photo">💝</div>
+                    <div class="martyr-name">${tribute.name}</div>
+                    <div class="martyr-details">
+                        <p style="font-style: italic; margin-bottom: 1rem;">"${tribute.message}"</p>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Shared on ${new Date(tribute.date).toLocaleDateString()}</p>
+                    </div>
+                </div>
+            `).join('');
+            
+            tributesDisplay.style.display = 'block';
+            tributesDisplay.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function submitTribute(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('tributeName').value || 'Anonymous';
+            const message = document.getElementById('tributeMessage').value;
+            
+            if (message.trim()) {
+                // Add new tribute to the beginning of the array
+                tributes.unshift({
+                    name: name,
+                    message: message,
+                    date: new Date().toISOString().split('T')[0]
+                });
+                
+                // Update tribute count
+                const tributeCount = document.getElementById('tributesShared');
+                const currentCount = parseInt(tributeCount.textContent.replace(',', ''));
+                tributeCount.textContent = (currentCount + 1).toLocaleString();
+                
+                // Clear form and hide it
+                document.getElementById('tributeName').value = '';
+                document.getElementById('tributeMessage').value = '';
+                hideTributeForm();
+                
+                // Show success message
+                alert('Thank you for your tribute. Your message has been added to the memorial wall.');
+                
+                // Auto-show tributes
+                showTributes();
+            }
+        }
+
+        function hideTributeForm() {
+            document.getElementById('tributeForm').style.display = 'none';
+        }
+
+        // Floating petals animation
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            petal.style.animationDelay = Math.random() * 5 + 's';
+            
+            document.getElementById('petals').appendChild(petal);
+            
+            // Remove petal after animation
+            setTimeout(() => {
+                if (petal.parentNode) {
+                    petal.parentNode.removeChild(petal);
+                }
+            }, 20000);
+        }
+
+        // Initialize floating petals
+        function initializePetals() {
+            // Create initial petals
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createPetal, i * 1000);
+            }
+            
+            // Continue creating petals periodically
+            setInterval(createPetal, 2000);
+        }
+
+        // Update visitor count periodically
+        function updateVisitorCount() {
+            const visitorsElement = document.getElementById('visitorsToday');
+            if (visitorsElement) {
+                const currentCount = parseInt(visitorsElement.textContent);
+                const newCount = currentCount + Math.floor(Math.random() * 3) + 1;
+                visitorsElement.textContent = newCount;
+            }
+        }
+
+        // Initialize all functionality when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSearch();
+            initializePetals();
+            
+            // Update visitor count every 30 seconds
+            setInterval(updateVisitorCount, 30000);
+            
+            // Add smooth scrolling to all internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Accessibility improvements
+        document.addEventListener('keydown', function(e) {
+            // Close location details with Escape key
+            if (e.key === 'Escape') {
+                closeLocationDetails();
+                hideTributeForm();
+            }
+        });
+
+        // Add loading state to navigation
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const loading = document.createElement('div');
+                loading.className = 'loading';
+                loading.style.display = 'inline-block';
+                loading.style.marginLeft = '0.5rem';
+                
+                this.appendChild(loading);
+                
+                setTimeout(() => {
+                    if (loading.parentNode) {
+                        loading.parentNode.removeChild(loading);
+                    }
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
